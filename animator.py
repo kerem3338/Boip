@@ -21,20 +21,27 @@ class Animator:
         self.scenes_count = 0
         self.scenes = []
         self.sleep = sleep
-        self.version = "2.0"
+        self.version = "2.1"
         
     def version(self):
         return self.version
 
     def lenght(self):
         return self.scenes_count*self.sleep
-    
+
+    def scence_from_file(self, file, encoding="utf8"):
+        """add new scene from file"""
+        with open(file, "r", encoding=encoding) as file:
+            self.scenes.append(file.read())
+            self.scene_count += 1
+            
     def scene(self, scene):
         """add new scene"""
         self.scenes.append(scene)
         self.scenes_count += 1
         
     def shape(self, shape, position=None):
+        """return shape"""
         square = "##\n##"
         if shape == "square":
             return square
@@ -42,6 +49,7 @@ class Animator:
             print(f"InvalidShape: {shape}")
             
     def copy_last(self, copy_count=None):
+        """copy last scene"""
         if copy_count is None:
             last_scene = len(self.scenes)-1
             self.scenes.append(self.scenes[last_scene])
@@ -62,7 +70,7 @@ class Animator:
                 self.scenes_count += 1
                 self.scenes.append(self.scenes[id])
         
-
+    
     def play_sound(self, soundfile, background:bool=True):
         if background is True:
             playsound(soundfile, False)
@@ -94,15 +102,17 @@ class Animator:
             os.system("clear")
             
     def play(self):
+        """Play all scenes"""
         for i in range(len(self.scenes)):
             self.clear()
             print(self.scenes[i])
             time.sleep(self.sleep)
             self.clear()
-            
+
     def export_scenes(self, exportfile, encoding="utf8"):
+        """export all scenes"""
         with open(exportfile, "w", encoding=encoding) as exportfile:
-            exportfile.write("Created using Boip Animator {self.version}")
+            exportfile.write(f"Created using Boip Animator {self.version}")
             for i in range(len(self.scenes)):
                 exportfile.write("\n")
                 exportfile.write(self.scenes[i])
