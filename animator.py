@@ -15,8 +15,7 @@ import os
 import sys
 import time
 import locale
-
-
+import glob
 """
 class Sound:
 	def __init__(self):
@@ -35,7 +34,7 @@ class Animator:
         self.scenes = []
         #self.sound = Sound()
         self.sleep = sleep
-        self.version = "2.2"
+        self.version = "2.3"
         self.system_lang = locale.getdefaultlocale()[0]
 
     def version(self):
@@ -49,6 +48,12 @@ class Animator:
         with open(file, "r", encoding=encoding) as file:
             self.scenes.append(file.read())
             self.scene_count += 1
+
+    def scenes_from_dir(self, dir, fileextension="txt"):
+        for i in range(len(glob.glob(f"{dir}\\*.{fileextension}"))):
+            with open(f"{dir}\\{i}.{fileextension}", "r") as file:
+                self.scenes.append(file.read())
+                self.scenes_count += 1
 
     def scene(self, scene):
         """add new scene"""
@@ -90,6 +95,7 @@ class Animator:
             for i in range(copy_count):
                 self.scenes_count += 1
                 self.scenes.append(self.scenes[id])
+
 
     def scene_from_id(self, id):
         print(self.scenes[id])
