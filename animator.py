@@ -16,33 +16,42 @@ import sys
 import time
 import locale
 import glob
-"""
-class Sound:
-	def __init__(self):
-		self.p = None
-	def play_sound(self, soundfile):
-		self.p = multiprocessing.Process(target=playsound, args=(soundfile,))	
-		self.p.start()
-	def stop(self):
-		self.p.terminate()
-"""
+import getpass
+from termcolor import colored
+
+
+
 
 
 class Animator:
-    def __init__(self, sleep=1.0):
+    def __init__(self, sleep_mode=False, sleep:int or float or double=1.0):
+        self.sleep=sleep_mode
+        self.sleep_error = "Error: Sleep mode not activated!"
         self.scenes_count = 0
         self.scenes = []
         #self.sound = Sound()
         self.sleep = sleep
-        self.version = "2.3"
+        self.version = "2.4"
         self.system_lang = locale.getdefaultlocale()[0]
-
     def version(self):
         return self.version
 
     def lenght(self):
-        return self.scenes_count*self.sleep
-
+        if self.sleep_mode is True:
+            return self.scenes_count*self.sleep
+        else:
+            print(self.sleep_error)
+    def create_config(self, filename):
+        with open(filename, "w") as file:
+            file.write(f"""
+{
+    "sleep": "{self.sleep}",
+    "sleep_mode": "{self.sleep_mode}"
+    "scenes_count": "{self.scenes_count}",
+    "author": "{getpass.getuser()}",
+    "boip_ver": "{self.version}"
+}
+""")
     def scence_from_file(self, file, encoding="utf8"):
         """add new scene from file"""
         with open(file, "r", encoding=encoding) as file:
@@ -59,7 +68,7 @@ class Animator:
         """add new scene"""
         self.scenes.append(scene)
         self.scenes_count += 1
-
+    
     def shape(self, shape, position=None):
         """return shape"""
         square = "##\n##"
@@ -108,8 +117,12 @@ class Animator:
         """NOT:Sahne içinde kullanılırsa bulunduğu sahneyi eklemez örnek: eğer projenizde 6 sahne varsa 5 sahne gösterecektir eğer sahnenin içinde kullanmazsanız sahne sayınızı normal bir şekilde gösterecektir"""
         return self.scenes_count
 
-    def set_sleep(self, sleep):
-        self.sleep = sleep
+    def set_sleep(self, sleep:int or float or double):
+        if self.sleep_mode is True:
+            self.sleep = sleep
+        else:
+            print(self.sleep_error)
+        
 
     def clear(self):
         """clear screen"""
@@ -121,12 +134,23 @@ class Animator:
 
     def play(self):
         """Play all scenes"""
-        for i in range(len(self.scenes)):
-            self.clear()
-            print(self.scenes[i])
-            time.sleep(self.sleep)
-            self.clear()
+        if self.sleep_mode is True:
+            for i in range(len(self.scenes)):
+                self.clear()
+                print(self.scenes[i])
+                #time.sleep(self.sleep)
+                self.clear()
+        else:
+            for i in range(len(self.scenes)):
+                self.clear()
+                print(self.scenes[i])
+                self.clear()
 
+
+
+
+
+                
     def export_scenes_dir(self, dir, fileextension="txt"):
         if self.system_lang == "tr_TR":
             print("Yapmak istediğiniz işlem Kritik bir işlemdir\nEğer sahne sayısı fazla bir animasyonun çıktısını almak istiyorsanız bu yöntem öenerilmez\nBilgisayarınızın hızını düşürebilir ayrıca diskte baya yer kaplar")
