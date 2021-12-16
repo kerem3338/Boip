@@ -26,12 +26,13 @@ from termcolor import colored
 class Animator:
     def __init__(self, sleep_mode=True, sleep:int or float or double=1.0):
         self.sleep_mode=sleep_mode
+        self.animation_info = {"author": getpass.getuser(), "usr_lang": self.system_lang, "sleep_mode": self.sleep_mode, "sleep": self.sleep, "scene_count": self.scene_count, "boip_ver": self.version}
         self.sleep_error = "Error: Sleep mode not activated!"
         self.scenes_count = 0
         self.scenes = []
         #self.sound = Sound()
         self.sleep = sleep
-        self.version = "2.5"
+        self.version = "2.5.1"
         self.system_lang = locale.getdefaultlocale()[0]
     def version(self):
         return self.version
@@ -41,18 +42,12 @@ class Animator:
             return self.scenes_count*self.sleep
         else:
             print(self.sleep_error)
+
     def create_config(self, filename):
         with open(filename, "w") as file:
-            file.write(f"""
-{
-    "sleep": "{self.sleep}",
-    "sleep_mode": "{self.sleep_mode}"
-    "scenes_count": "{self.scenes_count}",
-    "author": "{getpass.getuser()}",
-    "boip_ver": "{self.version}"
-}
-""")
-    def scence_from_file(self, file, encoding="utf8"):
+            file.write(self.animation_info)
+
+    def scene_from_file(self, file, encoding="utf8"):
         """add new scene from file"""
         with open(file, "r", encoding=encoding) as file:
             self.scenes.append(file.read())
