@@ -26,14 +26,15 @@ from termcolor import colored
 class Animator:
     def __init__(self, sleep_mode=True, sleep:int or float or double=1.0):
         self.sleep_mode=sleep_mode
-        self.animation_info = {"author": getpass.getuser(), "usr_lang": self.system_lang, "sleep_mode": self.sleep_mode, "sleep": self.sleep, "scene_count": self.scene_count, "boip_ver": self.version}
         self.sleep_error = "Error: Sleep mode not activated!"
         self.scenes_count = 0
         self.scenes = []
-        #self.sound = Sound()
+        
         self.sleep = sleep
-        self.version = "2.5.1"
+        self.version = "2.5.2"
         self.system_lang = locale.getdefaultlocale()[0]
+
+        self.animation_info = {"author": getpass.getuser(), "usr_lang": self.system_lang, "sleep_mode": self.sleep_mode, "sleep": self.sleep, "scene_count": self.scene_count, "boip_ver": self.version}
     def version(self):
         return self.version
 
