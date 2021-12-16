@@ -34,7 +34,7 @@ class Animator:
         self.version = "2.5.2"
         self.system_lang = locale.getdefaultlocale()[0]
 
-        self.animation_info = {"author": getpass.getuser(), "usr_lang": self.system_lang, "sleep_mode": self.sleep_mode, "sleep": self.sleep, "scene_count": self.scene_count, "boip_ver": self.version}
+        self.animation_info = {"author": getpass.getuser(), "usr_lang": self.system_lang, "sleep_mode": self.sleep_mode, "sleep": self.sleep, "scene_count": self.scenes_count, "boip_ver": self.version}
     def version(self):
         return self.version
 
