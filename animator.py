@@ -24,14 +24,14 @@ from termcolor import colored
 
 
 class Animator:
-    def __init__(self, sleep_mode=False, sleep:int or float or double=1.0):
-        self.sleep=sleep_mode
+    def __init__(self, sleep_mode=True, sleep:int or float or double=1.0):
+        self.sleep_mode=sleep_mode
         self.sleep_error = "Error: Sleep mode not activated!"
         self.scenes_count = 0
         self.scenes = []
         #self.sound = Sound()
         self.sleep = sleep
-        self.version = "2.4"
+        self.version = "2.5"
         self.system_lang = locale.getdefaultlocale()[0]
     def version(self):
         return self.version
@@ -123,7 +123,9 @@ class Animator:
         else:
             print(self.sleep_error)
         
+    
 
+    
     def clear(self):
         """clear screen"""
         if os.name == "nt":
@@ -134,17 +136,31 @@ class Animator:
 
     def play(self):
         """Play all scenes"""
+        playing_scene=0
         if self.sleep_mode is True:
             for i in range(len(self.scenes)):
-                self.clear()
-                print(self.scenes[i])
-                #time.sleep(self.sleep)
-                self.clear()
+                try:
+                    playing_scene=i
+                    self.clear()
+                    print(self.scenes[i])
+                    time.sleep(self.sleep)
+                    self.clear()
+                except KeyboardInterrupt:
+                    self.clear()
+                    print(f"Exited... Last scene: {playing_scene}")
+                    sys.exit()
         else:
             for i in range(len(self.scenes)):
-                self.clear()
-                print(self.scenes[i])
-                self.clear()
+                try:
+                    playing_scene=i
+                    self.clear()
+                    print(self.scenes[i])
+                    self.clear()
+                except KeyboardInterrupt:
+                    self.clear()
+                    print(f"Exited... Last scene: {playing_scene}")
+                    sys.exit()
+
 
 
 
