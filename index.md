@@ -13,21 +13,21 @@ Boip Konsol tabanlı animasyonlar oluşturmanızı sağlayan bir kütüphanedir.
 
 Boip'i indirdiğiniz klasörde yeni bir dosya açın ve herhangi bir metin editöründe oluşturduğunuz dosyayı açın ve artık animasyonunuzu oluşturmaya hazırsınız!
 
-**Boip'i İçeri Aktarma**
-`import animator` ile Boip'i içeri aktarıyoruz.
+**Boip'i İçeri Aktarma**<br>
+`import animator` ile Boip'i içeri aktarıyoruz.<br>
 
-**Animasayonu tanımlama**
-`animasyon=animator.Animator()` ile yeni bir sınıf oluşturuyoruz.
+**Animasayonu tanımlama**<br>
+`animasyon=animator.Animator()` ile yeni bir sınıf oluşturuyoruz.<br>
 
 ### Komutlar
-`scene(scene)` animasyona sahne ekler.
-`copy_last(copy_amount=None)` son sahneyi kopyalar (Eğer copy_amount değişkeni None değilse son sahneyi okadar kez kopyalar)
-`version` Boip'in versiyonunu döndürür.
-`copy_from_id(id,copy_amount=None)` Seçili sahneyi kopyalar.
-`scene_from_id(id)` Seçili sahneyi gösterir.
-`list_scenes` Bütün sahneleri gösterir.
-`scenes_count` Animasyondaki sahne sayısını gösterir.
-`play` Animasyonu oynatır.
+`scene(scene)` animasyona sahne ekler.<br>
+`copy_last(copy_amount=None)` son sahneyi kopyalar (Eğer copy_amount değişkeni None değilse son sahneyi okadar kez kopyalar)<br>
+`version` Boip'in versiyonunu döndürür.<br>
+`copy_from_id(id,copy_amount=None)` Seçili sahneyi kopyalar.<br>
+`scene_from_id(id)` Seçili sahneyi gösterir.<br>
+`list_scenes` Bütün sahneleri gösterir.<br>
+`scenes_count` Animasyondaki sahne sayısını gösterir.<br>
+`play` Animasyonu oynatır.<br>
 
 ### Örnek
 
