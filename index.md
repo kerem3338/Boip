@@ -1,37 +1,46 @@
 ## Boip Ascii Animatör
 
-You can use the [editor on GitHub](https://github.com/kerem3338/Boip/edit/gh-pages/index.md) to maintain and preview the content for your website in Markdown files.
 
-Whenever you commit to this repository, GitHub Pages will run [Jekyll](https://jekyllrb.com/) to rebuild the pages in your site, from the content in your Markdown files.
+Boip Konsol tabanlı animasyonlar oluşturmanızı sağlayan bir kütüphanedir.
 
-### Markdown
 
-Markdown is a lightweight and easy-to-use syntax for styling your writing. It includes conventions for
+### Kurulum
 
-```markdown
-Syntax highlighted code block
+[Github](https://github.com/kerem3338/Boip) Adresine gidin ve Yeşil Code butonuna tıklayın açılan pencereden 'Download Zip' seçeneğine tıklayın ve inen zip dosyasını bir klasöre çıkartın
 
-# Header 1
-## Header 2
-### Header 3
 
-- Bulleted
-- List
+## Kullanmaya Başlama
 
-1. Numbered
-2. List
+Boip'i indirdiğiniz klasörde yeni bir dosya açın ve herhangi bir metin editöründe oluşturduğunuz dosyayı açın ve artık animasyonunuzu oluşturmaya hazırsınız!
 
-**Bold** and _Italic_ and `Code` text
+**Boip'i İçeri Aktarma**
+`import animator` ile Boip'i içeri aktarıyoruz.
 
-[Link](url) and ![Image](src)
+**Animasayonu tanımlama**
+`animasyon=animator.Animator()` ile yeni bir sınıf oluşturuyoruz.
+
+### Komutlar
+`scene(scene)` animasyona sahne ekler.
+`copy_last(copy_amount=None)` son sahneyi kopyalar (Eğer copy_amount değişkeni None değilse son sahneyi okadar kez kopyalar)
+`version` Boip'in versiyonunu döndürür.
+`copy_from_id(id,copy_amount=None)` Seçili sahneyi kopyalar.
+`scene_from_id(id)` Seçili sahneyi gösterir.
+`list_scenes` Bütün sahneleri gösterir.
+`scenes_count` Animasyondaki sahne sayısını gösterir.
+`play` Animasyonu oynatır.
+
+### Örnek
+
+```py
+import animator
+animasyon=animator.Animator()
+animasyon.scene("->")
+animasyon.scene("-->")
+animasyon.scene("--->")
+animasyon.scene("---->")
+animasyon.play()
 ```
 
-For more details see [Basic writing and formatting syntax](https://docs.github.com/en/github/writing-on-github/getting-started-with-writing-and-formatting-on-github/basic-writing-and-formatting-syntax).
+### İletişim
 
-### Jekyll Themes
-
-Your Pages site will use the layout and styles from the Jekyll theme you have selected in your [repository settings](https://github.com/kerem3338/Boip/settings/pages). The name of this theme is saved in the Jekyll `_config.yml` configuration file.
-
-### Support or Contact
-
-Having trouble with Pages? Check out our [documentation](https://docs.github.com/categories/github-pages-basics/) or [contact support](https://support.github.com/contact) and we’ll help you sort it out.
+Yaşadığınız Sorunları veya isteklerinizi [zoda@vuhuv.com](zoda@vuhuv.com) Adresine iletin.
