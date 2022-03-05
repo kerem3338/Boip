@@ -175,6 +175,7 @@ class Animator:
                     self.clear()
                     print(f"Exited... Last scene: {playing_scene}")
                     sys.exit()
+                    cursor.show()
         else:
             for i in range(len(self.scenes)):
                 try:
@@ -186,7 +187,7 @@ class Animator:
                     self.clear()
                     print(f"Exited... Last scene: {playing_scene}")
                     sys.exit()
-
+                    cursor.show()
 
 
 
