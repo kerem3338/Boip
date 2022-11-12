@@ -1,0 +1,5 @@
+i=0
+while (i < 10): #20x2
+    self.scenes.append("""COMMAND SYSTEM WORKS""")
+    self.scenes.append("""command system works""")
+    i+=1
